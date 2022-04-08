@@ -2,18 +2,19 @@ import math
 
 
 class Circle:
-    def __init__(self, _radius):
-        self.radius = _radius
+    def __init__(self, radius):
+        self.radius = radius
     
-    def get_area(self):
+    @property
+    def area(self):
         return (math.pi * (self.radius ** 2))
     
     def __repr__(self):
-        rep = 'Circle(radius: ' + str(self.radius) + ', area: ' + str(self.get_area()) + ')'
+        rep = 'Circle(radius: ' + str(self.radius) + ', area: ' + str(self.area) + ')'
         return rep
     
     def __add__(self, other):
-        return Circle((self.radius + other.radius))
+        return Circle(self.radius + other.radius)
     
     def __lt__(self, other):
         return self.radius < other.radius
