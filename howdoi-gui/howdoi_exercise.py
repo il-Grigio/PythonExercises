@@ -23,68 +23,34 @@ class MainWindow(QMainWindow):
         ]
         for w in widgets:
             if w == QLabel:
-                self.label = w()
-                layout.addWidget(w(self.howdo("switch case in python")))
+                self.label = w(howdoi.howdoi("zoom in vscode"))
+                layout.addWidget(self.label)
             elif w == QLineEdit:
                 self.line_edit_widget = w()
                 self.line_edit()
                 layout.addWidget(self.line_edit_widget)
-
             else:
                 layout.addWidget(w())
         widget = QWidget()
         widget.setLayout(layout)
-        # Set the central widget of the Window. Widget will expand
-        # to take up all the space in the window by default.
         self.setCentralWidget(widget)
 
     def return_pressed(self):
-        self.widget.setText("BOOM!")
+        self.label.setText(howdoi.howdoi(self.line_edit_widget.text()))
 
     def selection_changed(self):
         print(self.widget.selectedText())
 
-    # def text_changed(self, text):
-    #     print(text)
-
-    def text_edited(self, text):
-        self.label.setText(self.howdo(text))
+    # def text_edited(self, text):
+    #     self.label.setText(self.howdo(text))
 
     def line_edit(self):
         self.line_edit_widget.setPlaceholderText("Enter your text")
-        #self.widget.setReadOnly(True) # uncomment this to make readonly
-        #self.line_edit_widget.returnPressed.connect(self.return_pressed)
-        #self.line_edit_widget.selectionChanged.connect(self.selection_changed)
-        #self.line_edit_widget.textChanged.connect(self.text_changed)
-        self.line_edit_widget.textEdited.connect(self.text_edited)
+        #self.line_edit_widget.textEdited.connect(self.text_edited)
+        self.line_edit_widget.returnPressed.connect(self.return_pressed)
 
-    def howdo(self, text):
-        if __name__ == "__main__":
-            return howdoi.howdoi(text)
-    # def mouseMoveEvent(self, e):
-    #     self.label.setText("mouseMoveEvent")
-    # def mousePressEvent(self, e):
-    #     self.label.setText("mousePressEvent")
-    # def mouseReleaseEvent(self, e):
-    #     self.label.setText("mouseReleaseEvent")
-    # def mouseDoubleClickEvent(self, e):
-    #     self.label.setText("mouseDoubleClickEvent")
-
-    # def contextMenuEvent(self, e):
-    #     context = QMenu(self)
-    #     context.addAction(QAction("test 1", self, triggered=self.do_something))
-    #     context.addAction(QAction("test 2", self, triggered=lambda: print("test 2")))
-    #     context.addAction(QAction("test 3", self, triggered=lambda: print("test 3")))
-    #     context.exec_(e.globalPos())
-    # def do_something(self):
-    #     print("test 1")
-
-
-app = QApplication(sys.argv)
-window = MainWindow()
-window.show()
-app.exec_()
-
-
-# if __name__ == "__main__":
-#     print(howdoi.howdoi("switch case in python"))
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    app.exec_()
