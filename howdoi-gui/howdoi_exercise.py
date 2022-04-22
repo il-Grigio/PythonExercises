@@ -1,5 +1,7 @@
 import sys
 
+from howdoi import howdoi
+
 from PySide2.QtWidgets import (
     QApplication, QCheckBox, QComboBox, QDateEdit,
     QDateTimeEdit, QSpinBox ,QSlider,
@@ -22,7 +24,7 @@ class MainWindow(QMainWindow):
         for w in widgets:
             if w == QLabel:
                 self.label = w()
-                layout.addWidget(w(howdoi.howdoi("switch case in python")))
+                layout.addWidget(w(self.howdo("switch case in python")))
             elif w == QLineEdit:
                 self.line_edit_widget = w()
                 self.line_edit()
@@ -46,7 +48,7 @@ class MainWindow(QMainWindow):
     #     print(text)
 
     def text_edited(self, text):
-        self.label.setText(howdoi.howdoi(text))
+        self.label.setText(self.howdo(text))
 
     def line_edit(self):
         self.line_edit_widget.setPlaceholderText("Enter your text")
@@ -56,6 +58,9 @@ class MainWindow(QMainWindow):
         #self.line_edit_widget.textChanged.connect(self.text_changed)
         self.line_edit_widget.textEdited.connect(self.text_edited)
 
+    def howdo(self, text):
+        if __name__ == "__main__":
+            return howdoi.howdoi(text)
     # def mouseMoveEvent(self, e):
     #     self.label.setText("mouseMoveEvent")
     # def mousePressEvent(self, e):
@@ -74,7 +79,6 @@ class MainWindow(QMainWindow):
     # def do_something(self):
     #     print("test 1")
 
-from howdoi import howdoi
 
 app = QApplication(sys.argv)
 window = MainWindow()
@@ -82,5 +86,5 @@ window.show()
 app.exec_()
 
 
-#if name == "__main__":
-#print(howdoi.howdoi("switch case in python"))
+# if __name__ == "__main__":
+#     print(howdoi.howdoi("switch case in python"))
