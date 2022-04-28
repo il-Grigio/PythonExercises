@@ -1,0 +1,4 @@
+global proc printCane1()
+{
+    print "Cane!\n";
+}

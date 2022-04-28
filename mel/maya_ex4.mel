@@ -1,0 +1,15 @@
+print("Transforms: ");
+print(size(`ls -sl -tr`));
+string $meshes[] = ls -sl -isType "mesh";
+print("Meshes: ");
+print( size($meshes));
+
+
+//ok non lo so fare
+
+print("Transforms: ");
+print(size(`ls -sl -tr`));
+string $meshes[] = ls -type "mesh";
+print("Meshes: ");
+print( size($meshes));
+print("Joints: " + size(`ls -type "joint"`));

@@ -1,0 +1,27 @@
+global string $AIV_Input_Name = "";
+
+global proc AIVInputNameUI()
+{
+    global string $AIV_Input_Name;
+    string $Window = "Window";
+    if(`window -q -ex $Window`)
+    {
+        deleteUI $Window;
+    }
+    window -wh 500 500 -s false $Window;
+        columnLayout -adj true;
+            rowLayout -nc 2;
+                text -l "Input Name";
+                textField -tx $AIV_Input_Name;
+            setParent ..;
+            button -l "Confirm Name" -c "NameSelected";
+            text -l "Welcome" $AIV_Input_Name;
+        setParent ..;
+    showWindow $Window;
+}
+global proc NameSelected(){
+    global string $AIV_Input_Name;
+        text -l $AIV_Input_Name;
+
+}
+AIVInputNameUI;
